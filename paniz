@@ -1,0 +1,51 @@
+import math
+import sympy as sp
+
+def main():
+    x = sp.Symbol('x')
+    
+    while True:
+        print("\n--- ماشین حساب مهندسی ---")
+        print("1. جمع، تفریق، ضرب، تقسیم")
+        print("2. قدر مطلق (abs)")
+        print("3. جذر (sqrt)")
+        print("4. مشتق (Derivative)")
+        print("5. انتگرال (Integral)")
+        print("6. خروج")
+        
+        choice = input("انتخاب شما: ")
+
+        if choice == '1':
+            a = float(input("عدد اول: "))
+            op = input("عملگر (+ - * /): ")
+            b = float(input("عدد دوم: "))
+            if op == '+': print(f"نتیجه: {a + b}")
+            elif op == '-': print(f"نتیجه: {a - b}")
+            elif op == '*': print(f"نتیجه: {a * b}")
+            elif op == '/': print(f"نتیجه: {a / b}" if b != 0 else "خطا: تقسیم بر صفر")
+
+        elif choice == '2':
+            n = float(input("عدد: "))
+            print(f"قدر مطلق: {abs(n)}")
+
+        elif choice == '3':
+            n = float(input("عدد: "))
+            print(f"جذر: {math.sqrt(n)}")
+
+        elif choice == '4':
+            expr = input("عبارت ریاضی (مثلاً x**2 + 5*x): ")
+            result = sp.diff(sp.sympify(expr), x)
+            print(f"مشتق: {result}")
+
+        elif choice == '5':
+            expr = input("عبارت ریاضی (مثلاً cos(x)): ")
+            result = sp.integrate(sp.sympify(expr), x)
+            print(f"انتگرال: {result} + C")
+
+        elif choice == '6':
+            break
+        else:
+            print("گزینه اشتباه!")
+
+if __name__ == "__main__":
+    main()
