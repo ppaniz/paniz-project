@@ -14,7 +14,7 @@ def get_float_input(prompt):
 
 def main():
     x = sp.Symbol('x')
-    print("--- ماشین حساب مهندسی پانیز راه اندازی شد ---")
+    print("--- ماشین حساب مهندسی پانیذ راه اندازی شد ---")
 
     try: # شروع بلوک اصلی برای کل برنامه
         while True:
