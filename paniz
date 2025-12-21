@@ -1,51 +1,71 @@
 import math
 import sympy as sp
 
+def get_float_input(prompt):
+    """گرفتن عدد ایمن از کاربر با مدیریت خطا"""
+    while True:
+        user_input = input(prompt)
+        try:
+            return float(user_input)
+        except:
+            print("خطا: لطفاً فقط عدد وارد کنید!") #
+
 def main():
     x = sp.Symbol('x')
-    
+
     while True:
-        print("\n--- ماشین حساب مهندسی ---")
-        print("1. جمع، تفریق، ضرب، تقسیم")
+        print("\n--- ماشین حساب مهندسی فوق پیشرفته ---")
+        print("1. محاسبات پایه (+ - * /)")
         print("2. قدر مطلق (abs)")
-        print("3. جذر (sqrt)")
-        print("4. مشتق (Derivative)")
-        print("5. انتگرال (Integral)")
-        print("6. خروج")
-        
+        print("3. مثلثات (sin, cos, tan)")
+        print("4. جذر (sqrt)")
+        print("5. مشتق (Derivative)")
+        print("6. انتگرال (Integral)")
+        print("7. خروج")
+
         choice = input("انتخاب شما: ")
 
         if choice == '1':
-            a = float(input("عدد اول: "))
+            a = get_float_input("عدد اول: ")
             op = input("عملگر (+ - * /): ")
-            b = float(input("عدد دوم: "))
+            b = get_float_input("عدد دوم: ")
             if op == '+': print(f"نتیجه: {a + b}")
             elif op == '-': print(f"نتیجه: {a - b}")
             elif op == '*': print(f"نتیجه: {a * b}")
-            elif op == '/': print(f"نتیجه: {a / b}" if b != 0 else "خطا: تقسیم بر صفر")
+            elif op == '/': 
+                if b != 0: print(f"نتیجه: {a / b}")
+                else: print("خطا: تقسیم بر صفر!")
 
         elif choice == '2':
-            n = float(input("عدد: "))
-            print(f"قدر مطلق: {abs(n)}")
+            n = get_float_input("عدد را وارد کنید: ")
+            print(f"قدرمطلق {n} برابر است با: {abs(n)}") #
 
         elif choice == '3':
-            n = float(input("عدد: "))
-            print(f"جذر: {math.sqrt(n)}")
+            angle = get_float_input("زاویه را به درجه وارد کنید: ")
+            rad = math.radians(angle) # تبدیل درجه به رادیان
+            print(f"sin({angle}) = {math.sin(rad)}")
+            print(f"cos({angle}) = {math.cos(rad)}")
+            print(f"tan({angle}) = {math.tan(rad)}")
 
         elif choice == '4':
-            expr = input("عبارت ریاضی (مثلاً x**2 + 5*x): ")
-            result = sp.diff(sp.sympify(expr), x)
-            print(f"مشتق: {result}")
+            n = get_float_input("عدد را وارد کنید: ")
+            if n >= 0: print(f"جذر: {math.sqrt(n)}") #
+            else: print("خطا: عدد منفی جذر حقیقی ندارد!")
 
         elif choice == '5':
-            expr = input("عبارت ریاضی (مثلاً cos(x)): ")
-            result = sp.integrate(sp.sympify(expr), x)
-            print(f"انتگرال: {result} + C")
+            expr_str = input("عبارت (مثلاً x**2 + sin(x)): ")
+            try:
+                expr = sp.sympify(expr_str)
+                print(f"مشتق: {sp.diff(expr, x)}") #
+            except: print("خطا در عبارت ریاضی!")
 
         elif choice == '6':
-            break
-        else:
-            print("گزینه اشتباه!")
+            expr_str = input("عبارت (مثلاً cos(x)): ")
+            try:
+                expr = sp.sympify(expr_str)
+                print(f"انتگرال: {sp.integrate(expr, x)} + C") #
+            except: print("خطا در عبارت ریاضی!")
 
-if __name__ == "__main__":
-    main()
+        elif choice == '7':
+            print("خداحافظ!")
+            break
