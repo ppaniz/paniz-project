@@ -1,0 +1,142 @@
+#دسترسی به عناصر یک آرایه
+cars = ["Ford", "Volvo", "BMW"]
+
+x = cars[0]
+
+print(x)
+#دسترسی به عناصر یک ارایه
+import array
+
+# ایجاد آرایه از نوع عدد صحیح
+arr = array.array('i', [1, 2, 3, 4])
+
+arr.append(5)
+
+arr[1] = 10
+
+print(arr)
+# ایجاد لیست
+lst = [1, 2, 3]
+# اضافه کردن عدد 4 به انتهای لیست
+lst.append(4)
+print("LIST=", lst) # خروجی: [1, 2, 3, 4]
+#مثال ارایه
+import array
+# ایجاد آرایه از نوع عدد صحیح (i)
+arr = array.array('i', [1, 2, 3])
+# اضافه کردن عدد 4
+arr.append(4)
+print(arr) # خروجی: array('i', [1, 2, 3, 4]
+#ورودی کاربر در پایتون
+print("Enter your name:")
+name = input()
+print(f"Hello {name}")
+#ورودی های چند گانه
+name = input("Enter your name: ")
+print(f"Hello {name}")
+
+fav1 = input("What is your favorite animal: ")
+fav2 = input("What is your favorite color: ")
+fav3 = input("What is your favorite number: ")
+
+print(f"Do you want a {fav2} {fav1} with {fav3} legs?")
+#شماره ورودی
+import math
+
+x = input("Enter a number: ")
+
+# تبدیل متن ورودی به عدد اعشاری برای محاسبه ریاضی
+y = math.sqrt(float(x))
+
+print(f"The square root of {x} is {y}")
+#اعتبار سنجی ورودی
+y = True
+while y == True:
+    x = input("Enter a number: ")
+    try:
+        x = float(x) # سعی می‌کند ورودی را به عدد تبدیل کند
+        y = False    # اگر موفق شد، حلقه تمام می‌شود
+    except:
+        # اگر کاربر چیزی غیر از عدد وارد کند، این بخش اجرا می‌شود
+        print("Wrong input, please try again.")
+
+print("Thank you!")
+#بلوک پایه
+try:
+    print(x) # چون x تعریف نشده، خطا رخ می‌دهد
+except:
+    print("An exception occurred")
+#مدیریت خطا های خاص
+try:
+    print(x)
+except NameError:
+    print("Variable x is not defined")
+except:
+    print("Something else went wrong")
+#استفاده از کلمه کلیدی else
+try:
+    print("Hello")
+except:
+    print("Something went wrong")
+else:
+    print("Nothing went wrong")
+#استفاده از کلمه کلیدی finaly
+try:
+    print(x)
+except:
+    print("Something went wrong")
+finally:
+    print("The 'try except' is finished")
+#توابع ریاضی داخلی
+# پیدا کردن کمترین و بیشترین مقدار
+x = min(5, 10, 25)
+y = max(5, 10, 25)
+print(f"Min: {x}, Max: {y}") # خروجی: 5 و 25
+
+# قدر مطلق (عددی که همیشه مثبت است)
+x = abs(-7.25)
+print(x) # خروجی: 7.25
+
+# توان (4 به توان 3)
+x = pow(4, 3)
+print(x) # خروجی: 64
+#ماژول تخصصی ریاضی
+import math
+
+# جذر (ریشه دوم)
+x = math.sqrt(64)
+print(x) # خروجی: 8.0
+
+# گرد کردن به سمت بالا (سقف)
+x = math.ceil(1.4)
+print(x) # خروجی: 2
+
+# گرد کردن به سمت پایین (کف)
+x = math.floor(1.4)
+print(x) # خروجی: 1
+import math
+
+# جذر (ریشه دوم)
+x = math.sqrt(64)
+print(x) # خروجی: 8.0
+
+# گرد کردن به سمت بالا (سقف)
+x = math.ceil(1.4)
+print(x) # خروجی: 2
+
+# گرد کردن به سمت پایین (کف)
+x = math.floor(1.4)
+print(x) # خروجی: 1
+import math
+
+# جذر (ریشه دوم)
+x = math.sqrt(64)
+print(x) # خروجی: 8.0
+
+# گرد کردن به سمت بالا (سقف)
+x = math.ceil(1.4)
+print(x) # خروجی: 2
+
+# گرد کردن به سمت پایین (کف)
+x = math.floor(1.4)
+print(x) # خروجی: 1
