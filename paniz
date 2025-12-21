@@ -1,61 +1,70 @@
 import math
 import sympy as sp
 
-def get_float_input(prompt):
-    """گرفتن عدد ایمن با مدیریت خطای NameError و موارد دیگر"""
-    while True:
-        user_input = input(prompt)
-        try:
-            return float(user_input)
-        except ValueError: # خطای مربوط به تبدیل متن به عدد
-            print("خطا: لطفاً فقط عدد وارد کنید!")
-        except Exception as e: # مدیریت سایر خطاهای احتمالی
-            print(f"یک خطای غیرمنتظره رخ داد: {e}")
+# تعریف متغیر برای حل مشتق و انتگرال
+x = sp.Symbol('x')
 
-def main():
-    x = sp.Symbol('x')
-    print("--- ماشین حساب مهندسی پانیذ راه اندازی شد ---")
+print("--- ماشین حساب مهندسی پانیذ ---")
 
-    try: # شروع بلوک اصلی برای کل برنامه
-        while True:
-            print("\n--- منوی اصلی ---")
-            print("1. پایه | 2. قدرمطلق | 3. مثلثات | 4. جذر | 5. مشتق | 6. انتگرال | 7. خروج")
-            
-            choice = input("انتخاب شما: ")
-
-            if choice == '1':
-                a = get_float_input("عدد اول: ")
-                op = input("عملگر (+ - * /): ")
-                b = get_float_input("عدد دوم: ")
-                if op == '+': print(f"نتیجه: {a + b}")
-                elif op == '/': 
-                    if b != 0: print(f"نتیجه: {a / b}")
-                    else: print("خطا: تقسیم بر صفر!")
-                # سایر عملگرها به همین ترتیب...
-
-            elif choice == '2':
-                n = get_float_input("عدد: ")
-                print(f"|{n}| = {abs(n)}")
-
-            elif choice == '3':
-                angle = get_float_input("زاویه به درجه: ")
-                rad = math.radians(angle)
-                print(f"sin: {math.sin(rad)}\ncos: {math.cos(rad)}")
-
-            elif choice == '5':
-                expr_str = input("عبارت (مثل x**2): ")
-                try:
-                    expr = sp.sympify(expr_str)
-                    print(f"مشتق: {sp.diff(expr, x)}")
-                except:
-                    print("خطا: عبارت ریاضی نامعتبر است!")
-
-            elif choice == '7':
-                break
+# شروع برنامه با یک حلقه ساده
+shart = True
+while shart == True:
+    print("\n1: عملیات اصلی (+-*/)")
+    print("2: قدرمطلق و توان")
+    print("3: مثلثات (سینوس کسینوس)")
+    print("4: جذر")
+    print("5: مشتق و انتگرال")
+    print("6: خروج")
     
-    finally:  
-        print("\nبستن منابع برنامه...")
-        print("عملیات با موفقیت به پایان رسید. (Try-Except-Finally Finished)")
+    entekhab = input("لطفا عدد گزینه را وارد کنید: ")
 
-if __name__ == "__main__":
-    main()
+    try:
+        if entekhab == '1':
+            a = float(input("عدد اول: "))
+            amal = input("عملگر را وارد کنید: ")
+            b = float(input("عدد دوم: "))
+            if amal == '+': print("جواب:", a + b)
+            elif amal == '-': print("جواب:", a - b)
+            elif amal == '*': print("جواب:", a * b)
+            elif amal == '/': 
+                if b != 0: print("جواب:", a / b)
+                else: print("خطا: تقسیم بر صفر!")
+
+        elif entekhab == '2':
+            n = float(input("عدد: "))
+            print("قدرمطلق:", abs(n))
+            p = float(input("توان: "))
+            print("نتیجه توان:", pow(n, p))
+
+        elif entekhab == '3':
+            deg = float(input("زاویه به درجه: "))
+            rad = math.radians(deg)
+            print("سینوس:", math.sin(rad))
+            print("کسینوس:", math.cos(rad))
+
+        elif entekhab == '4':
+            adad = float(input("عدد برای جذر: "))
+            if adad >= 0:
+                print("جذر:", math.sqrt(adad))
+            else:
+                print("عدد منفی جذر ندارد")
+
+        elif entekhab == '5':
+            f = input("فرمول را بنویس (مثلا x**2): ")
+            ebarat = sp.sympify(f)
+            print("مشتق:", sp.diff(ebarat, x))
+            print("انتگرال:", sp.integrate(ebarat, x))
+
+        elif entekhab == '6':
+            shart = False
+
+    except:
+        # اگر کاربر به جای عدد، متن وارد کنه این پیام میاد
+        print("خطا! ورودی اشتباه است. لطفا دقت کنید.")
+
+    finally:
+        # این پیام همیشه در آخر هر مرحله چاپ میشه
+        if shart == True:
+            print("--- آماده برای محاسبه بعدی ---")
+        else:
+            print("برنامه با موفقیت بسته شد.")
